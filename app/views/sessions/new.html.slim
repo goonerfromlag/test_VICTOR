@@ -1,0 +1,15 @@
+- if @error.present?
+  .error = @error
+  br
+
+= form_for @user, url: sessions_path, method: :post do |form|
+  = form.email_field :email, placeholder: "Email"
+  br
+  = form.password_field :password, placeholder: "Password"
+  br
+  br
+  = form.submit "Log In", class: "submit-button"
+
+br
+
+= link_to "Sign up", new_user_path

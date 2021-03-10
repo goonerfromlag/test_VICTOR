@@ -1,0 +1,21 @@
+header
+  = current_user.email
+  | &nbsp;|&nbsp;
+  = link_to "Log Out", sessions_path, method: :delete
+
+br
+
+.chat-container
+  - @messages.each do |message|
+    .chat-message
+      .chat-message__header
+        = message.created_at.to_s(:short)
+        | &nbsp;|&nbsp;
+        = message.user.email
+      .chat-message__body
+        = message.content
+
+.chat-new-message-form
+  = form_for Message.new, url: messages_path, method: :post, remote: true do |form|
+    = form.text_field :content, placeholder: "Enter your message", class: "content-input"
+    = form.submit "Send", class: "submit-button"
